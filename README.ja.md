@@ -7,7 +7,7 @@
 
 Next.js 15、React 19、TypeScript で構築されたシンプルで直感的な TODO アプリケーションです。クリーンでレスポンシブなインターフェースで整理整頓し、タスクを完了させましょう。
 
-![Todo App スクリーンショット](https://via.placeholder.com/800x400/f3f4f6/374151?text=Todo+App+Screenshot)
+<img width="3428" height="2324" alt="CleanShot 2025-07-16 at 04 00 22@2x" src="https://github.com/user-attachments/assets/d85db2d3-961e-496b-bc23-9a5333ec95b1" />
 
 ## ✨ 機能
 
