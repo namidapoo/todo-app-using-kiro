@@ -7,7 +7,7 @@
 
 A simple and intuitive todo application built with Next.js 15, React 19, and TypeScript. Stay organized and get things done with a clean, responsive interface.
 
-![Todo App Screenshot](https://via.placeholder.com/800x400/f3f4f6/374151?text=Todo+App+Screenshot)
+<img width="3428" height="2324" alt="CleanShot 2025-07-16 at 04 00 22@2x" src="https://github.com/user-attachments/assets/06aa266f-2e79-4a59-8603-1b6c5ee21af6" />
 
 ## ✨ Features
 
