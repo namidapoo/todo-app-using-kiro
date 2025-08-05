@@ -27,12 +27,18 @@ export function useTodos() {
 
   // フィルタリングされたTodoリスト
   const filteredTodos = useMemo(() => {
+    if (!Array.isArray(todos)) {
+      return [];
+    }
     const sorted = sortTodos(todos);
     return filterTodos(sorted, filter);
   }, [todos, filter]);
 
   // Todo統計情報
   const stats = useMemo(() => {
+    if (!Array.isArray(todos)) {
+      return { total: 0, active: 0, completed: 0 };
+    }
     return calculateTodoStats(todos);
   }, [todos]);
 
@@ -40,7 +46,8 @@ export function useTodos() {
   const addTodo = useCallback((text: string) => {
     try {
       setError(null);
-      const result = addTodoHelper(todos, text);
+      const safeTodos = Array.isArray(todos) ? todos : [];
+      const result = addTodoHelper(safeTodos, text);
       
       if (result.error) {
         setError(result.error);
@@ -60,7 +67,8 @@ export function useTodos() {
   const toggleTodo = useCallback((id: string) => {
     try {
       setError(null);
-      const updatedTodos = toggleTodoHelper(todos, id);
+      const safeTodos = Array.isArray(todos) ? todos : [];
+      const updatedTodos = toggleTodoHelper(safeTodos, id);
       setTodos(updatedTodos);
       return true;
     } catch (err) {
@@ -74,7 +82,8 @@ export function useTodos() {
   const deleteTodo = useCallback((id: string) => {
     try {
       setError(null);
-      const updatedTodos = deleteTodoHelper(todos, id);
+      const safeTodos = Array.isArray(todos) ? todos : [];
+      const updatedTodos = deleteTodoHelper(safeTodos, id);
       setTodos(updatedTodos);
       return true;
     } catch (err) {
@@ -93,7 +102,8 @@ export function useTodos() {
   const clearCompleted = useCallback(() => {
     try {
       setError(null);
-      const activeTodos = todos.filter(todo => !todo.completed);
+      const safeTodos = Array.isArray(todos) ? todos : [];
+      const activeTodos = safeTodos.filter(todo => !todo.completed);
       setTodos(activeTodos);
       return true;
     } catch (err) {
@@ -120,8 +130,9 @@ export function useTodos() {
   const toggleAll = useCallback(() => {
     try {
       setError(null);
-      const hasActiveTodos = todos.some(todo => !todo.completed);
-      const updatedTodos = todos.map(todo => ({
+      const safeTodos = Array.isArray(todos) ? todos : [];
+      const hasActiveTodos = safeTodos.some(todo => !todo.completed);
+      const updatedTodos = safeTodos.map(todo => ({
         ...todo,
         completed: hasActiveTodos,
         updatedAt: new Date(),
@@ -137,22 +148,26 @@ export function useTodos() {
 
   // 特定のTodoを取得する関数
   const getTodoById = useCallback((id: string): Todo | undefined => {
-    return todos.find(todo => todo.id === id);
+    const safeTodos = Array.isArray(todos) ? todos : [];
+    return safeTodos.find(todo => todo.id === id);
   }, [todos]);
 
   // Todoが存在するかチェックする関数
   const hasTodos = useMemo(() => {
-    return todos.length > 0;
+    const safeTodos = Array.isArray(todos) ? todos : [];
+    return safeTodos.length > 0;
   }, [todos]);
 
   // アクティブなTodoが存在するかチェックする関数
   const hasActiveTodos = useMemo(() => {
-    return todos.some(todo => !todo.completed);
+    const safeTodos = Array.isArray(todos) ? todos : [];
+    return safeTodos.some(todo => !todo.completed);
   }, [todos]);
 
   // 完了済みTodoが存在するかチェックする関数
   const hasCompletedTodos = useMemo(() => {
-    return todos.some(todo => todo.completed);
+    const safeTodos = Array.isArray(todos) ? todos : [];
+    return safeTodos.some(todo => todo.completed);
   }, [todos]);
 
   // エラーをクリアする関数
@@ -166,7 +181,7 @@ export function useTodos() {
   return {
     // 状態
     todos: filteredTodos,
-    allTodos: todos,
+    allTodos: Array.isArray(todos) ? todos : [],
     filter,
     stats,
     error: combinedError,
