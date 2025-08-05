@@ -66,7 +66,8 @@ export function TodoItem({ todo, onToggle, onDelete, className = '' }: TodoItemP
         rounded-lg shadow-sm
         transition-all duration-200 ease-in-out
         hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600
-        ${isDeleting ? 'opacity-50 scale-95' : ''}
+        animate-slide-up
+        ${isDeleting ? 'opacity-50 scale-95 animate-scale-in' : ''}
         ${isCompleted ? 'opacity-75' : ''}
         ${className}
       `}

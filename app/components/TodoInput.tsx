@@ -160,7 +160,7 @@ export function TodoInput({
         {hasError && (
           <div
             id="todo-input-error"
-            className="mt-2 text-sm text-red-600 dark:text-red-400"
+            className="mt-2 text-sm text-red-600 dark:text-red-400 animate-slide-up"
             role="alert"
             aria-live="polite"
           >
