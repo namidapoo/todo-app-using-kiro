@@ -1,3 +1,6 @@
+> [!note]
+> 本アプリケーションは、Kiroを使用して開発されたデモアプリケーションです。社内向けKiro紹介記事のために作成されました。
+
 # 📝 Modern Todo App
 
 モダンな Todo アプリケーション - Next.js 15、React 19、TypeScript、Tailwind CSS v4 で構築された効率的なタスク管理ツール
